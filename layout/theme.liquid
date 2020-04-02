@@ -77,6 +77,8 @@
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ request.page_type | handle }}">
 
+  {% render 'age-check' %}
+
   {% section 'header' %}
 
   <div id="CartDrawer" class="drawer drawer--right drawer--has-fixed-footer">
@@ -155,5 +157,7 @@
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
     <li id="a11y-slideshow-info">{{ 'home_page.slideshow.navigation_instructions' | t }}</li>
   </ul>
+  {% render 'newsletter-modal' %}
+
 </body>
 </html>

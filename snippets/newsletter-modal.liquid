@@ -1,0 +1,129 @@
+
+
+<div id="newsletter-modal-container">
+  <div class="newsletter-modal">
+    <div class="newsletter" data-section-id="newsletter" data-section-type="newsletter-section">
+      <div class="wrapper">
+        
+          <div class="section-header text-center">
+            <h2 class="h1 section-header__title">Will you join us?</h2>
+            <h2 class="h1 section-header__title">(no spam, no B.S.)</h2>
+          </div>
+        
+        
+          <div class="section-subheading rte text-center">
+            <p>
+            Our tribe of subscribers (200+) receives exclusive updates on product design, entrepreneurial growth, & cannabis culture; join us along this journey!
+            </p>
+            <hr class="hr--small">
+          </div>
+        
+        <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="contact-form"><input type="hidden" name="form_type" value="customer"><input type="hidden" name="utf8" value="✓">
+            <label for="Email" class="newsletter__label hidden-label">Sign up to our mailing list</label>
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="newsletter--form">
+              <div class="input-group">
+                <input type="email" value="" placeholder="Your email" name="contact[email]" id="Email" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
+                <span class="input-group-btn">
+                  <button id="Subscribe" type="submit" class="btn newsletter__submit" aria-label="Subscribe" onclick="setCookie(true)">
+                    <span class="newsletter__submit-text--large">Subscribe</span>
+                    <span class="newsletter__submit-text--small">
+                      <span class="icon icon-arrow-right" aria-hidden="true"></span>
+                    </span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          
+        </form>
+        <div class="close-link">
+          <span onclick="setCookie()">No Thanks 💩</span>
+        </div>
+      </div>
+    </div>
+  </div>
+<div>
+
+<script>
+ function setCookie(didSignup) {
+   const days = didSignup ? 365 : 7; 
+   const date = new Date();
+   date.setTime(date.getTime()+(days*24*60*60*1000));
+   const expires = "; expires="+date.toGMTString();
+   document.cookie = 'newsletterClosed=true;'+expires+";";
+   updateModalStyle();
+ };
+ function readCookie(name) {
+   const nameEQ = name + "=";
+   const ca = document.cookie.split(';');
+   for(let i=0;i < ca.length;i++) {
+      let c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  };
+
+  function updateModalStyle() {
+    const newsletterClosed = readCookie('newsletterClosed');
+    const modal = document.getElementById('newsletter-modal-container');
+    if (newsletterClosed) {
+      modal.setAttribute('style', 'display: none')  
+    } else {
+      modal.setAttribute('style', 'display: flex')  
+    }
+  }
+
+
+  window.setTimeout(() => {
+    updateModalStyle()
+  }, 30000);
+
+</script>
+
+<style>
+
+#newsletter-modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+#newsletter-modal-container .newsletter {
+  padding: 40px 0 !important;
+}
+
+.newsletter-modal {
+  width: 550px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+.close-link {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.close-link span {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.close-link span:hover {
+  opacity: .7;
+}
+
+@media (max-width: 750px) {
+  .newsletter-modal {
+    width: 90%;
+  }
+}
+</style>
