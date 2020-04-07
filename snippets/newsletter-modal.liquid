@@ -45,18 +45,22 @@
 <div>
 
 <script>
- function setCookie(didSignup) {
-   const days = didSignup ? 365 : 7; 
-   const date = new Date();
-   date.setTime(date.getTime()+(days*24*60*60*1000));
-   const expires = "; expires="+date.toGMTString();
-   document.cookie = 'newsletterClosed=true;'+expires+";";
-   updateModalStyle();
- };
- function readCookie(name) {
-   const nameEQ = name + "=";
-   const ca = document.cookie.split(';');
-   for(let i=0;i < ca.length;i++) {
+  const POP_UP_TIME = 30*1000; // milliseconds
+
+  function setCookie(didSignup) {
+    const days = didSignup ? 365 : 7; 
+    const date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    const expires = "; expires="+date.toGMTString();
+    document.cookie = 'newsletterClosed=true;'+expires+";";
+    
+    updateModalStyle();
+  };
+
+  function readCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
       let c = ca[i];
       while (c.charAt(0)==' ') c = c.substring(1,c.length);
       if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
@@ -74,11 +78,15 @@
     }
   }
 
+  function checkStatus() {
+    window.setTimeout(() => {
+      const isAnAdult = readCookie('isAnAdult'); //check if user is over 18
+      if (!isAnAdult) checkStatus();
+      else updateModalStyle();
+    }, POP_UP_TIME);
+  }
 
-  window.setTimeout(() => {
-    updateModalStyle()
-  }, 30000);
-
+  checkStatus();
 </script>
 
 <style>

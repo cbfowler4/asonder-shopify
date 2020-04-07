@@ -17,24 +17,28 @@ By clicking Enter you verify that you are 21+ in the US and 19+ years old in Can
       </div>
     </div>
   </div>
-  <div class="background-img">
-    <img src="{{ 'age-check-background.jpg' | asset_url }}" />
-  </div>
 </div>
 
 <script>
- function ageCheck() {
-   const days = 14; //number of days until they must go through the age checker again.
-   const date = new Date();
-   date.setTime(date.getTime()+(days*24*60*60*1000));
-   const expires = "; expires="+date.toGMTString();
-   document.cookie = 'isAnAdult=true;'+expires+"; path=/";
-   location.reload();
- };
- function readCookie(name) {
-   const nameEQ = name + "=";
-   const ca = document.cookie.split(';');
-   for(let i=0;i < ca.length;i++) {
+  function hideBackground() {
+    const background = document.getElementById('prompt-background');
+    background.setAttribute('style', 'display: none');
+  }
+
+  function ageCheck() {
+    const days = 14; //number of days until they must go through the age checker again.
+    const date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    const expires = "; expires="+date.toGMTString();
+    document.cookie = 'isAnAdult=true;'+expires+"; path=/";
+
+    hideBackground();
+  };
+
+  function readCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
       let c = ca[i];
       while (c.charAt(0)==' ') c = c.substring(1,c.length);
       if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
@@ -42,10 +46,7 @@ By clicking Enter you verify that you are 21+ in the US and 19+ years old in Can
     return null;
   };
 
-  const isAnAdult = readCookie('isAnAdult');
-  if (isAnAdult) {
-    document.write("<style> #prompt-background { display: none; }</style>");
-  }
+  if (readCookie('isAnAdult')) hideBackground();
 </script>
 
 <style>
@@ -82,7 +83,6 @@ By clicking Enter you verify that you are 21+ in the US and 19+ years old in Can
   right: 0;
   bottom: 0;
   z-index: 9999999;
-  background: black;
 }
   
 .background-img {
