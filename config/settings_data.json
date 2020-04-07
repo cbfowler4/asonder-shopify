@@ -87,54 +87,6 @@
           "color_text": "#ffffff"
         }
       },
-      "slideshow": {
-        "type": "slideshow",
-        "blocks": {
-          "slideshow-0": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/DSC_2061.JPG",
-              "image_position": "center center",
-              "image_overlay": true,
-              "image_overlay_opacity": 35,
-              "text_alignment": "center",
-              "slide_heading": "Designed by you.",
-              "slide_subheading": "Bespoke pipes",
-              "button_label": "Start Designing",
-              "button_link": "shopify:\/\/products\/brooklyn-pipe",
-              "slide_text_color": "#ffffff",
-              "slide_button_label_color": "#000000",
-              "slide_button_background_color": "#ffffff"
-            }
-          },
-          "slideshow-1": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/DSC_2174.png",
-              "image_position": "center center",
-              "image_overlay": true,
-              "image_overlay_opacity": 25,
-              "text_alignment": "center",
-              "slide_heading": "Designed by you.",
-              "slide_subheading": "Bespoke pipes",
-              "button_label": "Start Designing",
-              "button_link": "shopify:\/\/products\/brooklyn-pipe",
-              "slide_text_color": "#ffffff",
-              "slide_button_label_color": "#000000",
-              "slide_button_background_color": "#ffffff"
-            }
-          }
-        },
-        "block_order": [
-          "slideshow-0",
-          "slideshow-1"
-        ],
-        "settings": {
-          "home_hero_height": "full",
-          "hero_home_auto": false,
-          "home_hero_auto_speed": 5
-        }
-      },
       "featured-collections": {
         "type": "featured-collections",
         "blocks": {
@@ -215,11 +167,43 @@
         }
       },
       "custom-html-for-index": {
-        "type": "advanced-content-2"
+        "type": "advanced-content-2",
+        "settings": {}
+      },
+      "1586274171246": {
+        "type": "slideshow",
+        "blocks": {
+          "1586274171246-0": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/landing.gif",
+              "mobile_image": "shopify:\/\/shop_images\/DSC_2174.jpg",
+              "image_position": "center center",
+              "image_overlay": true,
+              "image_overlay_opacity": 2,
+              "text_alignment": "center",
+              "slide_heading": "",
+              "slide_subheading": "",
+              "button_label": "",
+              "button_link": "",
+              "slide_text_color": "#ffffff",
+              "slide_button_label_color": "#000000",
+              "slide_button_background_color": "#ffffff",
+            }
+          }
+        },
+        "block_order": [
+          "1586274171246-0"
+        ],
+        "settings": {
+          "home_hero_height": "full",
+          "hero_home_auto": false,
+          "home_hero_auto_speed": 5
+        }
       }
     },
     "content_for_index": [
-      "slideshow",
+      "1586274171246",
       "custom-html-for-index",
       "featured-collections",
       "newsletter",
