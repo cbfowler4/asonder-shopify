@@ -231,6 +231,20 @@
               </div>
             {%- endif -%}
 
+            <div class="product-shipping">
+              <span class='estimation'>Estimated delivery</span>
+              <span>between</span>
+              <span id="shipping-object">{{ product.metafields.global.min_ship_days }},{{ product.metafields.global.max_ship_days }}</span>
+            </div>
+
+            <div class='warning'>
+              Due to COVID-19 we are experiencing delays in shipping.
+            </div>
+            <br />
+            <span class='warning'>
+              Rest assured your custom piece will be with you before you know it 
+            </span>😁
+
             <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
             <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
@@ -293,12 +307,18 @@
 </div>
 
 {{ 'configurator-reader.bundle.js' | asset_url | script_tag }}
+{{ 'helpers.js' | asset_url | script_tag }}
 
 {% unless product == empty %}
   <script type="application/json" id="ProductJson-{{ section.id }}">
     {{ product | json }}
   </script>
 {% endunless %}
+
+<script>
+  const element = document.getElementById('shipping-object');
+  updateShipTimeElement(element);
+</script>
 
 
 
