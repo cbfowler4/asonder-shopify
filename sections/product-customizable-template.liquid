@@ -232,18 +232,12 @@
             {%- endif -%}
 
             <div class="product-shipping">
-              <span class='estimation'>Estimated delivery</span>
+              <span class='estimation'>*Estimated delivery</span>
               <span>between</span>
               <span id="shipping-object">{{ product.metafields.global.min_ship_days }},{{ product.metafields.global.max_ship_days }}</span>
             </div>
 
-            <div class='warning'>
-              Due to COVID-19 we are experiencing delays in shipping.
-            </div>
-            <br />
-            <span class='warning'>
-              Rest assured your custom piece will be with you before you know it 
-            </span>😁
+            
 
             <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
             <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
@@ -298,9 +292,13 @@
             {{ product.description }}
           </div>
 
-          {% if section.settings.social_sharing_products %}
-            {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-          {% endif %}
+          <div class='warning'>
+            *Due to COVID-19 we are experiencing delays in shipping.
+          </div>
+          <br />
+          <span class='warning'>
+            Rest assured your custom piece will be with you before you know it 
+          </span>😁
         </div>
       </div>
     </div>
