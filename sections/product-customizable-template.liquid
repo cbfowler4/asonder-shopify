@@ -231,10 +231,13 @@
               </div>
             {%- endif -%}
 
-            <div class="product-shipping">
+            <div id="estimated-shipping">
               <span class='estimation'>*Estimated delivery</span>
               <span>between</span>
-              <span id="shipping-object">{{ product.metafields.global.min_ship_days }},{{ product.metafields.global.max_ship_days }}</span>
+              <span id="shipping-object">
+                {{ product.metafields.global.min_ship_days }},
+                {{ product.metafields.global.max_ship_days }}
+              </span>
             </div>
 
             
@@ -276,9 +279,6 @@
               </div>
               {% endif %}
 
-              
-
-
               <div class="product-single__add-to-cart{% if section.settings.add_to_cart_button_size == 'large' %} product-single__add-to-cart--full-width{% endif %}">
                 {% if section.settings.enable_payment_button %}
                   {{ form | payment_button }}
@@ -292,20 +292,15 @@
             {{ product.description }}
           </div>
 
-          <div class='warning'>
-            *Due to COVID-19 we are experiencing delays in shipping.
-          </div>
-          <br />
-          <span class='warning'>
-            Rest assured your custom piece will be with you before you know it 
-          </span>😁
         </div>
       </div>
+    </div>
+    <div class='warning'>
+      *Due to COVID-19 we are experiencing delays in shipping
     </div>
 </div>
 
 {{ 'configurator-reader.bundle.js' | asset_url | script_tag }}
-{{ 'helpers.js' | asset_url | script_tag }}
 
 {% unless product == empty %}
   <script type="application/json" id="ProductJson-{{ section.id }}">
@@ -314,8 +309,7 @@
 {% endunless %}
 
 <script>
-  const element = document.getElementById('shipping-object');
-  updateShipTimeElement(element);
+  updateEstimatedShippingElement();
 </script>
 
 
