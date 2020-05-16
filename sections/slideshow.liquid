@@ -106,7 +106,8 @@
             {%- assign mobile_img_url = block.settings.mobile_image | img_url: '1x1' | replace: '_1x1.', '_1296x.' -%}
 
             {% if block.settings.image %}
-              <img class="desktop_image hero__image hero__image--{{ block.id }} lazyload fade-in{% unless forloop.first == true %} lazypreload{% endunless %}"
+              <img class="desktop_image rellax hero__image hero__image--{{ block.id }} lazyload fade-in{% unless forloop.first == true %} lazypreload{% endunless %}"
+                data-rellax-speed="-4"
                 {%- if forloop.first == true -%}
                   src="{{ img_url }}"
                 {%- endif -%}
@@ -121,7 +122,8 @@
             {% endif %}
 
             {% if block.settings.mobile_image %}
-              <img class="mobile_image hero__image hero__image--{{ block.id }} lazyload fade-in{% unless forloop.first == true %} lazypreload{% endunless %}"
+              <img class="mobile_image rellax hero__image hero__image--{{ block.id }} lazyload fade-in{% unless forloop.first == true %} lazypreload{% endunless %}"
+                data-rellax-speed="-4"
                 {%- if forloop.first == true -%}
                   src="{{ mobile_img_url }}"
                 {%- endif -%}
@@ -229,6 +231,9 @@
 }
 </style>
 
+<script>
+  var rellax = new Rellax('.rellax');
+</script>
 
 {% schema %}
 {
@@ -530,8 +535,6 @@
           "type": "image_picker",
           "id": "mobile_image",
           "label": {
-            "da": "Billede",
-            "de": "Bild",
             "en": "Mobile Image",
             "es": "Imagen",
             "fi": "Kuva",

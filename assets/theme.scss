@@ -1301,10 +1301,10 @@ input[type="image"] {
 /*================ Newsletter area ================*/
 .newsletter {
   background-color: $colorNewsletter;
-  padding: $gutter 0;
+  padding: 40px 0;
 
   @include at-query($min, $postSmall) {
-    padding: ($gutter * 2) 0;
+    padding: 40px 0;
   }
 
   .section-header {
@@ -1318,7 +1318,7 @@ input[type="image"] {
 
     @include at-query($min, $postSmall) {
       margin-top: -50px;
-      margin-bottom: 50px;
+      margin-bottom: 0px;
     }
   }
 
@@ -1333,7 +1333,11 @@ input[type="image"] {
     max-width: 520px;
 
     .newsletter--form {
-      padding: $gutter / 3;
+      padding: $gutter / 4;
+
+      input {
+        font-size: 18px;
+      }
     }
     .note,
     .errors {

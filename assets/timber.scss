@@ -2139,6 +2139,7 @@ $socialIconFontStack: 'icons';
 /*================ Module | Footer ================*/
 .site-footer {
   padding-bottom: $gutter;
+  padding-top: $gutter;
 
   @include at-query($max, $small) {
     .grid__item {
@@ -2147,14 +2148,14 @@ $socialIconFontStack: 'icons';
   }
 
   a {
-    color: $colorTextBody;
+    color: white;
 
     &:active {
-      color: darken($colorTextBody, 20%);
+      color: darken(white, 20%);
     }
 
     &:hover {
-      color: lighten($colorTextBody, 20%);
+      color: lighten(white, 20%);
     }
   }
 }
