@@ -387,10 +387,6 @@ $contentTopMarginSmall: 35px;
 $radius: 0;
 $customSelectHeight: 46px;
 
-// Footer spacing
-$footer-spacing-small: $gutter / 2;
-$footer-spacing-extra-small: $gutter / 4;
-
 // Z-index
 $zindexNavDropdowns: 5;
 $zindexDrawer: 10;
@@ -1273,6 +1269,16 @@ input[type="image"] {
 .newsletter {
   background-color: $colorNewsletter;
   padding: $gutter 0;
+  margin-top: $gutter * 2;
+
+  .shopify-section:first-child & {
+    margin-top: -($gutter * 2);
+    @include at-query($min, $postSmall) {
+      margin-bottom: -($gutter * 2);
+      position: relative;
+      top: -($gutter * 5 / 3);
+    }
+  }
 
   @include at-query($min, $postSmall) {
     padding: ($gutter * 2) 0;
@@ -1894,10 +1900,6 @@ $shareCountBg: $colorBody;
 .index-sections {
   .shopify-section:first-child {
     margin: 0;
-
-    &:not(.shopify-section--full-width) {
-      margin-top: 110px;
-    }
   }
 
   .shopify-section {
@@ -1906,13 +1908,6 @@ $shareCountBg: $colorBody;
     @include at-query($max, $medium) {
       margin-top: $gutter * 1.5;
     }
-  }
-}
-
-.index-slideshow-section,
-.shopify-section--full-width {
-  & + .shopify-section--full-width {
-    margin-top: 0;
   }
 }
 
@@ -2033,6 +2028,11 @@ $shareCountBg: $colorBody;
 
   .feature-row__text--right {
     padding-right: $section-spacing-small;
+  }
+}
+
+@include at-query($min, $large) {
+  .featured-row__subtext {
   }
 }
 
@@ -2167,10 +2167,7 @@ $slideshow-indicator-size: 1.25rem;
   // Height is set by JS on slider init. vh is a nice default for modern browsers.
   height: 100vh;
   max-height: 100vh;
-
-  &.slick-slider {
-    margin-bottom: 0;
-  }
+  margin-bottom: 1.9rem;
 
   @include at-query($max, $siteWidth) {
     min-height: 50vw;
@@ -2283,12 +2280,10 @@ $slideshow-indicator-size: 1.25rem;
 }
 
 .hero__adapt-text-wrap {
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
-
   @include at-query($min, $large) {
     display: none !important;
   }
+  margin-bottom: 1rem;
 
   @include at-query($max, $medium) {
     color: $colorHeadings;
@@ -2355,7 +2350,7 @@ $slideshow-indicator-size: 1.25rem;
 }
 
 /*================ Hero header ================*/
-.header-wrapper--transparent {
+.hero__header {
   position: absolute;
   top: 0;
   left: 0;
@@ -2968,11 +2963,13 @@ $slick-dot-character: '\2022';
 .site-nav__dropdown a,
 .site-nav__grandchild-dropdown a {
   background-color: transparent;
+  color: $colorTextBody;
 
   &:hover,
   &:active,
   &:focus {
     background-color: transparent;
+    color: $colorSecondary;
   }
 }
 
@@ -3138,6 +3135,7 @@ $slick-dot-character: '\2022';
       filter: alpha(opacity=100);
     }
 
+
     &.mfp-removing {
       @include transition(all 0.3s ease-out);
       opacity: 0;
@@ -3160,7 +3158,7 @@ $slick-dot-character: '\2022';
     }
 
     &.mfp-removing {
-      @include transition(all 0.3s ease-out);
+        @include transition(all 0.3s ease-out);
       .mfp-content {
         opacity: 0;
       }
@@ -3170,6 +3168,7 @@ $slick-dot-character: '\2022';
       }
     }
   }
+
 }
 
 .mfp-counter {
@@ -3182,7 +3181,6 @@ $slick-dot-character: '\2022';
   }
 
   &:after {
-    background-color: $colorProductBackground;
     box-shadow: none;
   }
 }
@@ -3256,6 +3254,7 @@ button.mfp-arrow {
     }
   }
 }
+
 
 .grid-product__wrapper {
   text-align: center;
@@ -3707,6 +3706,14 @@ button.mfp-arrow {
   @include at-query($max, $small) {
     padding: 0 $gutter * 0.5;
   }
+
+  .shopify-section:first-child & {
+    margin-top: -110px;
+
+    @include at-query($max, $medium) {
+      margin-top: inherit;
+    }
+  }
 }
 
 .map-section__wrapper {
@@ -3896,119 +3903,17 @@ button.mfp-arrow {
   }
 }
 
-/*================ Selectors ================*/
+// Section padding
+.index-newsletter-section + .index-map-section{
+  margin-top: 0;
+}
 
-$selector-item-margin: $footer-spacing-extra-small / 1.5;
+.index-map-section + .index-newsletter-section {
+  margin-top: -60px;
 
-.selectors-form {
-  @include display-flexbox();
-  @include justify-content(center);
-  @include flex-wrap(wrap);
-
-  @include at-query($min, $postSmall) {
-    @include justify-content(flex-start);
-    margin-left: -1 * $selector-item-margin;
+  @include at-query($max, $medium) {
+    margin-top: $gutter;
   }
-
-  @include at-query($min, $large) {
-    @include justify-content(flex-end);
-    margin: 0 0 0 $selector-item-margin;
-  }
-}
-
-.selectors-form--single-column {
-  @include justify-content(center);
-}
-
-.selectors-form__item {
-  margin: 0 $selector-item-margin $footer-spacing-small;
-}
-
-$max-height-disclosure: 300px;
-$min-height-disclosure: 92px;
-$disclosure-list-large: 1100px;
-
-.disclosure {
-  position: relative;
-}
-
-.disclosure__toggle {
-  @include bodyFontItalic;
-
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-position: right center;
-  color: color-control($colorInputBg);
-  cursor: pointer;
-  border: 1px solid transparent;
-  padding: 8px 28px 8px 10px;
-  text-indent: 0.01px;
-  text-overflow: '';
-  white-space: nowrap;
-
-  background: {
-    color: $colorInputBg;
-    image: url('{{ "ico-select.svg" | asset_url }}');
-    position: right 10px center;
-    repeat: no-repeat;
-  }
-
-  &:hover {
-    outline: 1px solid darken($colorInputBg, 10%);
-  }
-}
-
-.disclosure-list {
-  @include transform(translateX(-50%));
-
-  background-color: $colorBody;
-  bottom: 120%;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.09);
-  display: none;
-  max-height: $max-height-disclosure;
-  min-height: $min-height-disclosure;
-  overflow-y: auto;
-  padding: 11px 0px;
-  position: absolute;
-  left: 50%;
-  margin: 0;
-
-  @include at-query($min, $postSmall) {
-    @include transform(translateX(0%));
-    right: 0;
-    left: auto;
-  }
-}
-
-.disclosure-list--visible {
-  display: block;
-}
-
-.disclosure-list__item {
-  padding: 5px 45px 4px 15px;
-  text-align: left;
-  white-space: nowrap;
-
-  .disclosure-list__option {
-    @include bodyFontItalic;
-    color: $colorTextBody;
-
-    &:focus,
-    &:hover {
-      color: $colorSecondary;
-    }
-  }
-
-  @include at-query($max, $postSmall) {
-    &:active {
-      background-color: rgba($colorSecondary, 0.08);
-    }
-  }
-}
-
-.disclosure-list__item--current .disclosure-list__option {
-  color: $colorSecondary;
 }
 
 

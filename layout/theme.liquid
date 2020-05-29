@@ -109,7 +109,14 @@
   </div>
 
   <div id="PageContainer" class="page-container">
-    <main class="main-content" role="main">
+    
+      {% if request.page_type == "index" %}
+        <main class="main-content index-page" role="main">
+      {% else %}
+        <main class="main-content" role="main">
+      {% endif %}
+
+
       {% unless request.page_type == "index" %}
         <div class="wrapper">
       {% endunless %}

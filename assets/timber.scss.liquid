@@ -395,10 +395,6 @@ $contentTopMarginSmall: 35px;
 $radius: 0;
 $customSelectHeight: 46px;
 
-// Footer spacing
-$footer-spacing-small: $gutter / 2;
-$footer-spacing-extra-small: $gutter / 4;
-
 // Z-index
 $zindexNavDropdowns: 5;
 $zindexDrawer: 10;
@@ -533,18 +529,14 @@ body {
 
 .main-content {
   display: block;
-
-  // to be kept before Sections Everywhere
-  body:not(.template-index) & {
-    padding-top: $gutter;
-
-    @include at-query($min, $large) {
-      padding-top: $contentTopMargin;
-    }
-  }
+  padding-top: $gutter;
 
   @include at-query($min, $postSmall) {
     padding-bottom: 40px;
+  }
+
+  @include at-query($min, $large) {
+    padding-top: $contentTopMargin;
   }
 }
 
@@ -2111,7 +2103,7 @@ $socialIconFontStack: 'icons';
 .site-footer {
   padding-bottom: $gutter;
 
-  @include at-query($max, $small) {
+  @include at-query ($max, $small) {
     .grid__item {
       padding-bottom: 5px;
     }
@@ -2123,21 +2115,13 @@ $socialIconFontStack: 'icons';
     &:active {
       color: darken($colorTextBody, 20%);
     }
-
-    &:hover {
-      color: lighten($colorTextBody, 20%);
-    }
   }
 }
 
 .site-footer__linklist {
   @include at-query($min, $postSmall) {
-    margin-bottom: $footer-spacing-small;
+    margin-bottom: $gutter / 2;
   }
-}
-
-.site-footer__payment-icons {
-  margin-left: -1 * $footer-spacing-extra-small;
 }
 
 /*================ Module | Notes and Form Feedback ================*/
@@ -2360,8 +2344,7 @@ $socialIconFontStack: 'icons';
 
 /*================ Module | Site Header ================*/
 .site-header {
-  background-color: $colorBody;
-  padding: 15px 0;
+  padding: ($gutter / 2) 0 0;
 
   .grid--table {
     display: table;
@@ -2375,42 +2358,30 @@ $socialIconFontStack: 'icons';
     }
   }
 
-  .header-wrapper--transparent & {
-    background-color: transparent;
-  }
 }
 
 .site-header__logo {
   text-align: center;
   margin: 0 auto;
-}
 
-.site-header__logo-image {
-  display: block;
-  margin: 0 auto;
-
-  .header-wrapper--transparent & {
-    display: none;
+  a,
+  a:hover {
+    text-decoration: none;
+    color: $colorNavText;
   }
-}
 
-.site-header__logo-image--transparent {
-  display: none;
+  a.site-header__logo-link {
+    margin: 0 auto;
+  }
 
-  .header-wrapper--transparent & {
+  a,
+  img {
     display: block;
   }
-}
 
-.site-header__logo-link {
-  display: block;
-}
-
-.site-header__logo-link,
-.site-header__logo-link:hover {
-  color: $colorNavText;
-  margin: 0 auto;
-  text-decoration: none;
+  img {
+    margin: 0 auto;
+  }
 }
 
 .announcement-bar {
@@ -2523,6 +2494,7 @@ $socialIconFontStack: 'icons';
   text-decoration: none;
   padding: $gutter / 2;
   white-space: nowrap;
+  color: $colorNavText;
   font-size: em(14px);
 
   .icon-arrow-down {

@@ -427,7 +427,8 @@ $passwordPageUseBgImage: true;
 $color-blankstate: rgba($colorTextBody, 0.35);
 $color-blankstate-background: rgba($colorTextBody, 0.10);
 
-/*================ Typography ================*/@font-face {
+/*================ Typography ================*/
+@font-face {
   font-family: Abel;
   font-weight: 400;
   font-style: normal;
