@@ -35,7 +35,7 @@
 #shopify-section-header {
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 800;
   border-bottom: 1px solid rgba(34, 34, 34, .2);
   background-color: white;
 }
@@ -103,8 +103,46 @@
   margin-top: 25px;
 }
 
+
+.about-main {
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+}
+
+.about-content {
+  padding-left: 35px;
+}
+
+.about-content p {
+  margin: 0 0 8px 0;
+}
+
+.about-image {
+  padding-bottom: 30px;
+}
+
+
+
+.about-content h4 {
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+
+.about-content b {
+  font-weight: 800;
+}
+
+
 @media screen and (max-width: 590px) {
   .newsletter__submit-text--large {
     display: block;
+  }
+
+  .about-main {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-content {
+    padding-left: 0px;
   }
 }

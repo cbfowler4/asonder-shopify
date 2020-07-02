@@ -1352,7 +1352,7 @@ input[type="image"] {
   }
 
   .newsletter__input {
-    font-size: em(18px);
+    font-size: em(14px);
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
     appearance: textfield;
@@ -2913,7 +2913,7 @@ $slick-dot-character: '\2022';
 .site-nav__link {
   @include accentFontStack;
   @include transition(color 0.2s);
-  font-size: em(14px);
+  font-size: em(16px);
 }
 
 .site-nav--has-dropdown {

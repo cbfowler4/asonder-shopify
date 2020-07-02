@@ -92,6 +92,7 @@
             }
           {%- endstyle -%}
         {%- endif -%}
+
         <div class="hero__slide slide--{{ block.id }}{% if block.settings.image == blank %} slide--placeholder{% endif %}"
               data-hero-slide
               {{ block.shopify_attributes }}>
@@ -104,13 +105,10 @@
 
             {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_1296x.' -%}
             {%- assign mobile_img_url = block.settings.mobile_image | img_url: '1x1' | replace: '_1x1.', '_1296x.' -%}
-
             {% if block.settings.image %}
               <img class="desktop_image rellax hero__image hero__image--{{ block.id }} lazyload fade-in{% unless forloop.first == true %} lazypreload{% endunless %}"
                 data-rellax-speed="-4"
-                {%- if forloop.first == true -%}
                   src="{{ img_url }}"
-                {%- endif -%}
                 data-src="{{ img_url }}"
                 data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048, 4472]"
                 data-aspectratio="{{ img.aspect_ratio }}"
@@ -124,9 +122,7 @@
             {% if block.settings.mobile_image %}
               <img class="mobile_image rellax hero__image hero__image--{{ block.id }} lazyload fade-in{% unless forloop.first == true %} lazypreload{% endunless %}"
                 data-rellax-speed="-4"
-                {%- if forloop.first == true -%}
-                  src="{{ mobile_img_url }}"
-                {%- endif -%}
+                src="{{ mobile_img_url }}"
                 data-src="{{ mobile_image_url }}"
                 data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048, 4472]"
                 data-aspectratio="{{ img.aspect_ratio }}"

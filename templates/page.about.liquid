@@ -1,0 +1,18 @@
+<!-- /templates/page.liquid -->
+<div>    
+  <header class="section-header text-center">
+    <h1>{{ page.title }}</h1>
+    <hr class="hr--small">
+  </header>
+
+  <div class='about-main'>
+    <div class='about-image'>
+      {{ 'team-split-screen_copy.jpg' | file_img_url: '1200x750' | img_tag }}
+    </div>
+
+    <div class="about-content">
+      {{ page.content }}
+    </div>
+  </div>
+
+</div>

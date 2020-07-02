@@ -5,13 +5,13 @@
     <div class="newsletter" data-section-id="newsletter" data-section-type="newsletter-section">
       <div class="wrapper">
         
-          <div class="section-header text-center">
+          <div class="text-center">
             <h2 class="h1 section-header__title">Will you join us?</h2>
             <h2 class="h1 section-header__title">(no spam, no B.S.)</h2>
           </div>
         
         
-          <div class="section-subheading rte text-center">
+          <div class="rte text-center">
             <p>
             Our tribe of subscribers (200+) receives exclusive updates on product design, entrepreneurial growth, & cannabis culture; join us along this journey!
             </p>
@@ -50,7 +50,7 @@
   const POP_UP_TIME = 30*1000; // milliseconds
 
   function setCookie(didSignup) {
-    const days = didSignup ? 365 : 7; 
+    const days = didSignup ? 365 : 31; 
     const date = new Date();
     date.setTime(date.getTime()+(days*24*60*60*1000));
     const expires = "; expires="+date.toGMTString();
@@ -97,7 +97,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: 1000;
   left: 0;
   right: 0;
   display: flex;
@@ -107,13 +107,28 @@
 }
 
 #newsletter-modal-container .newsletter {
-  padding: 40px 0 !important;
+  padding: 25px 0 !important;
 }
 
 .newsletter-modal {
+  position: absolute;
+  top: 12%;
   width: 550px;
   border-radius: 2px;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+.newsletter-modal .newsletter {
+  margin-top: 0px;
+}
+
+.newsletter form .newsletter--form {
+  padding: 5px;
+}
+
+.newsletter-modal .section-subheading .rte .text-center {
+  margin-bottom: 25px;
+  margin-top: 25px;
 }
 
 .close-link {
@@ -134,6 +149,16 @@
 @media (max-width: 750px) {
   .newsletter-modal {
     width: 90%;
+  }
+}
+
+@media (max-height: 600px) {
+  .newsletter-modal {
+    top: 2%;
+  }
+
+  #newsletter-modal-container .newsletter {
+    padding: 10px 0 !important;
   }
 }
 </style>
