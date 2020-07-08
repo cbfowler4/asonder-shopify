@@ -1,0 +1,229 @@
+<!-- /templates/page.liquid -->
+<div>    
+  <header class="section-header text-center">
+    <h1>{{ page.title }}</h1>
+    <hr class="hr--small">
+  </header>
+
+  <div class='faq-main'>
+    <ul class='cat-list'>
+    {% for category in page.metafields.global.faqs %}
+      <a class="cat-link {{ category | first }}" href="#{{ category | first }}">
+        {{ category | first }}
+      </a>
+    {% endfor %}
+    </ul>
+  
+    {% assign first_category_type = page.metafields.global.faqs.first | first %}
+    <div class="faq-content">
+      <ul class='faq-question-list'>
+        {% for category in page.metafields.global.faqs %}
+        {% assign content = category | last %}
+          <div class="cat-{{ category | first }} hide-list">
+          {% for question in content %}
+            <li class="question-container">
+              <button onclick="updateContainer(this)">
+                {{ question[0] }}
+                <img class="plus" src="{{ "plus.svg" | asset_url }}" />
+                <img class="minus" src="{{ "line.svg" | asset_url }}" />
+              </button>
+              <div class="answer-body">{{ question[1] }}</div>
+
+            </li>
+          {% endfor %}
+          </div>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  const HIDE_CLASS = "hide-list";
+  const ACTIVE_LINK_CLASS = "active-link";
+  const EXPAND_CLASS = 'expand-section';
+
+  const updateSelectedCategory = (category) => {
+    document.querySelectorAll(".faq-question-list > div").forEach((list) => {
+      if (list.className.includes(category)) list.classList.remove(HIDE_CLASS);
+      else list.classList.add(HIDE_CLASS);
+    })
+
+    document.querySelectorAll(".cat-link").forEach((link) => {
+      console.log(link);
+      if (link.className.includes(category)) link.classList.add(ACTIVE_LINK_CLASS);
+      else link.classList.remove(ACTIVE_LINK_CLASS);
+    })
+  }
+
+  window.addEventListener("hashchange", () => {
+    const category = window.location.hash.split('#')[1];
+    updateSelectedCategory(category);
+  });
+
+  const initialHash = window.location.hash.split('#')[1];
+  console.log(initialHash);
+  if (!initialHash) {
+    document.querySelector(".faq-question-list > div").classList.remove(HIDE_CLASS);
+    document.querySelector(".cat-link").classList.add(ACTIVE_LINK_CLASS);
+  } else {
+    updateSelectedCategory(initialHash);
+  }
+
+  const updateContainer = (button) => {
+    const parent = button.parentElement;
+    if (parent.classList.contains(EXPAND_CLASS)) parent.classList.remove(EXPAND_CLASS)
+    else parent.classList.add(EXPAND_CLASS);
+  };
+
+
+
+</script>
+
+<style>
+
+  .faq-main li {
+    margin: 0;
+    list-style: none;
+  }
+
+  .faq-main button {
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    letter-spacing: .3px;
+  }
+
+  .faq-main button:focus {
+    outline: none;
+  }
+
+  .faq-main button:hover {
+    opacity: .8;
+  }
+
+  .faq-main {
+    display: flex;
+  }
+
+  .cat-link {
+    padding: 2px 0px 2px 12px;
+    text-transform: lowercase;
+    font-size: 1.2em;
+    margin-left: 3px;
+    border-right: 1px solid lightgray;
+    transition: opacity, color .1s ease-in;
+  }
+
+  .cat-link:hover {
+    opacity: .8;
+    color: {{ settings.color_secondary }};
+  }
+
+  .cat-link.active-link {
+    margin-left: 0;
+    border-left: 3px solid {{ settings.color_secondary }};
+  }
+
+  .cat-list {
+    width: 25%;
+    margin-left: 8%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hide-list {
+    display: none;
+  }
+
+  .question-container {
+    padding: 10px 0;
+    border-bottom: 1px solid lightgray;
+    position: relative;
+  }
+
+  .answer-body {
+    display: none;
+    margin-top: 10px;
+    padding-bottom: 15px;
+  }
+
+  .question-container.expand-section .answer-body {
+    display: block;
+  }
+
+  .question-container.expand-section {
+    border-bottom: none;
+  }
+
+  .question-container .plus, .question-container .minus {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    width: 12px;
+  }
+
+  .question-container.expand-section .plus {
+    display: none;
+  }
+
+  .faq-content {
+    width: 50%;
+    margin-left: 8%;
+  }
+
+  @media screen and (max-width: 580px) {
+    .faq-main {
+      flex-direction: column;
+    }
+
+    .cat-list {
+      flex-direction: row;
+      margin: 0;
+      overflow-x: scroll;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .cat-list::-webkit-scrollbar {
+      width: 0px;  /* Remove scrollbar space */
+      background: transparent;  /* Optional: just make scrollbar invisible */
+    }
+
+    .cat-link {
+      margin-left: 0;
+      border-right: none;
+      border-bottom: 3px solid lightgray;
+      padding: 2px 12px;
+    }
+
+    .cat-link:hover {
+      opacity: 1;
+      color: unset;
+    }
+
+    .cat-link.active-link {
+      margin-bottom: 0;
+      border-left: none;
+      border-bottom: 3px solid {{ settings.color_secondary }};
+    }
+
+    .faq-content {
+      margin-top: 30px;
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .faq-question-list {
+      margin: 20px 0;
+    }
+
+    .faq-main button:hover {
+      opacity: 1;
+    }
+
+  }
+
+
+</style>

@@ -14,7 +14,25 @@
       <p>
         <span class="date"><time datetime="{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}">{{ article.published_at | date: format: 'date' }}</time></span>
       </p>
+
+      <a class="article__featured-image-link" href="{{ article.url }}">
+        <noscript>
+          {{ article.image | img_url: '2048x2048' | img_tag: article.title | escape }}
+        </noscript>
+        <div class="article__featured-image-wrapper" style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100}}%;">
+          {% assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+          <img class="article__featured-image lazyload"
+            src="{{ article.image | img_url: '300x300' }}"
+            data-src="{{ img_url }}"
+            data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+            data-aspectratio="{{ article.image.aspect_ratio }}"
+            data-sizes="auto"
+            alt="{{ article.title | escape }}">
+        </div>
+      </a>
     </header>
+
+    
 
     <div class="grid">
       <div class="grid__item large--four-fifths push--large--one-tenth">
