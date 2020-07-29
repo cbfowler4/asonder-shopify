@@ -33,8 +33,10 @@
 }
 
 #shopify-section-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 800;
   border-bottom: 1px solid rgba(34, 34, 34, .2);
   background-color: white;
@@ -49,7 +51,7 @@
 }
 
 .main-content.builder {
-  padding-top: 0 !important;
+  padding: 0 !important;
 }
 
 .estimation {
@@ -86,10 +88,23 @@
 
 .newsletter--form {
   margin-bottom: 15px;
+}
 
-  .input-group {
-    width: 100%;
-  }
+.newsletter--form .input-group {
+  width: 100%;
+}
+
+.newsletter--form .input-group input:focus {
+  outline: none;
+}
+
+.slick-next:focus, .slick-prev:focus {
+  outline: none;
+}
+
+
+.slick-slider {
+  margin-bottom: 0px;
 }
 
 #insta-feed h2 {
@@ -147,3 +162,16 @@
   }
 }
 
+#CartDrawer {
+  z-index: 900;
+}
+
+@media screen and (min-width: 769px) {
+  .main-content {
+      padding-top: 150px;
+  }
+}
+
+.main-content {
+  padding-top: 160px;
+}
