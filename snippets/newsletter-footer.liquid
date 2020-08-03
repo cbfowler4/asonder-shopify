@@ -1,0 +1,80 @@
+<div class="newsletter-footer" data-section-type="newsletter-footer">
+  <div class="wrapper">
+    <div class="text-center">
+      <h2 class="h1 section-header__title">
+        Will you join us? (no spam, no ads, no B.S.)
+      </h2>
+    </div>
+    <div class="section-subheading rte text-center">
+        Our small tribe of subscribers (200+) receives exclusive 
+        behind-the-scenes updates on product design, entrepreneurial 
+        growth, & cannabis culture; you're invited to come along on 
+        this journey too!
+      <hr class="hr--small white">
+    </div>
+    {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <div class="newsletter--form">
+          <div class="note form-success">{{ 'general.newsletter_form.newsletter_confirmation' | t }}</div>
+        </div>
+      {% else %}
+
+        <label for="Email" class="newsletter__label hidden-label">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter--form">
+          <div class="input-group">
+            <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_placeholder' | t }}" name="contact[email]" id="Email" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
+          </div>
+        </div>
+        <div class="newsletter--form">
+          <div class="input-group">
+            <input type="text" value="{% if customer %}{{ customer.first_name }}{% endif %}" placeholder="First name" name="contact[first_name]" id="First Name" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
+          </div>
+        </div>
+        <span class="input-group-btn">
+          <button id="Subscribe" type="submit"
+            class="btn newsletter__submit"
+            aria-label="{{ 'general.newsletter_form.submit' | t }}">
+            <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
+          </button>
+        </span>
+      {% endif %}
+    {% endform %}
+    <br/>
+    <hr class="hr--small white hr--long">
+    <br/>
+  </div>
+</div>
+
+
+
+<style>
+  .newsletter-footer .h1 {
+    color: white;
+  }
+
+  .newsletter-footer .btn {
+    border: 1px solid white;
+  }
+
+  .input-group-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 750px) {
+    .newsletter--form {
+      width: 60%;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+
+</style>

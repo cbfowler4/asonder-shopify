@@ -1,6 +1,7 @@
 <footer class="site-footer small--text-center" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
   <div class="wrapper">
-
+    {% include 'newsletter-footer' %}
+    <img class='flt-hand' src="{{ 'hand-eye.png' | asset_url }}" /> 
     <div class="grid-uniform">
 
       {% comment %}
@@ -273,6 +274,21 @@
 
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    position: relative;
+  }
+
+  .flt-hand {
+    position: absolute;
+    top: 0;
+    right: 50px;
+    height: 300px;
+    opacity: .3;
+  }
+
+</style>
 
 
 
