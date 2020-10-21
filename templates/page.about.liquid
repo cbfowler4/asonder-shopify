@@ -1,11 +1,11 @@
 <!-- /templates/page.liquid -->
-<div>    
-  <header class="section-header text-center about-header">
+<div class="about-section">
+  {% comment %} <header class="section-header text-center about-header">
     <h1>{{ page.title }}</h1>
     <hr class="hr--small">
-  </header>
+  </header> {% endcomment %}
 
-  <div class='about-main'>
+  {% comment %} <div class='about-main'>
     <div class='about-image'>
       {{ 'team-split-screen_copy.jpg' | file_img_url: '1200x750' | img_tag }}
     </div>
@@ -16,30 +16,283 @@
 
     <img class="flt-circle" src="{{ 'circle.png' | asset_url }}" />
 
+  </div> {% endcomment %}
+  <div class="about-top">
+    <div class="about-top-left">
+      <h4><b>Mission <span>(reason for being)</span></b></h4>
+
+      <div class="highlight-section purple-bk">
+          <h5 class="highlighted-quote">
+            asonder’s mission is to catalyze fulfilling hemp experiences.
+          </h5>
+      </div>
+
+
+
+      <p class='about-body'>
+        We cultivate a holistic smoking experience through personalized, 
+        neo-artisanal pieces that are imbued with intentions of spiritual pursuit.
+        <br/>
+        <br/>
+        We’ve found that an accessible relationship can be developed with the plant;
+        one that fosters personal growth and interpersonal unity. To help facilitate
+        that relationship, we create pieces that are connected with the spiritual nature
+        of the plant. The piece may become a cornerstone in your smoking ritual.
+        <br/>
+        <br/>
+        We have ambitious goals to guide and inform
+        experiences, though we are a brand, not an
+        institution. We recognize that we are each
+        somewhere along our own journey, and each
+        path is individual. We don’t take ourselves
+        too seriously (wink) and seek to make our contribution as accessible
+        for our audience as possible!
+      </p>
+    </div>
+    <div class='img-container right'>
+      <img src='https://cdn.shopify.com/s/files/1/0095/0724/2039/files/JWL04567.jpg?v=1603308890'/>
+    </div>
+  </div>
+
+  <div class='about-middle'>
+      <div class='img-container left'>
+        <img src='https://cdn.shopify.com/s/files/1/0095/0724/2039/files/DSC_4027.jpg?v=1603310692'/>
+      </div>
+    <div class='about-middle-right'>
+      <h4><b>Vision <span>(future aspirations)</span></b></h4>
+
+      <div class="highlight-section">
+        <h5 class="highlighted-quote purple-txt">
+          our vision is to be a major kinetic force in 
+          the progressive shift of the hemp culture.
+        </h5>
+      </div>
+
+
+
+      <p class='about-body'>
+        We see a deep change swelling in the collective consciousness 
+        and seek to make an accelerating contribution. Individuals are 
+        increasingly aware of their own sentience: of their bodies, 
+        their habits, their relationships, their environments, etc. 
+        For many, hemp is and can be a conduit for cultivating such 
+        development.
+        <br/>
+        <br/>
+        The plant has a special place within our societies: it presents 
+        an opportunity for facilitating new perspectives, modes of 
+        being, and loving kindness for all.
+        <br/>
+        <br/>
+        To achieve this, we seek to develop/curate/share an accessible 
+        model for conscious hemp consumption. This will manifest in the 
+        design & presentation of our products, content, and future 
+        services beyond. 
+      </p>
+    </div>
+  </div>
+
+  <div class='major-quote-container'>
+    <div class='major-quote'>
+      Ultimately, it is our vision to use the experience & resources 
+      gained from this venture to make a  continuously larger impact 
+      on the quality of life for all on this planet.
+    </div>
+    <img src='https://cdn.shopify.com/s/files/1/0095/0724/2039/files/icon_white.png?v=1603312089'/>
+  </div>
+
+  <div class='about-bottom'>
+    <div class='about-bottom-left'>
+      <img class="flt-circle" src="{{ 'circle.png' | asset_url }}" />
+      <img class='team-1' src='https://cdn.shopify.com/s/files/1/0095/0724/2039/files/JWL05268.jpg?v=1603312672'/>
+      <img class='team-2' src='https://cdn.shopify.com/s/files/1/0095/0724/2039/files/JWL05258.jpg?v=1603313445'/>
+      <img class='team-3' src='https://cdn.shopify.com/s/files/1/0095/0724/2039/files/JWL05145.jpg?v=1603313453'/>
+    </div>
+
+    <div class='about-bottom-right'>
+      <h4><b>Team <span>(who we are)</span></b></h4>
+      <p>
+        The company was founded and bootstrapped in 2019 by the Brooklynite team of Justin Deslites, Bryan Fowler, & James Agati Jr, who saw a gap in the market for pieces that reflected a contemporary mindful lifestyle.
+      </p>
+    </div>
   </div>
 
 </div>
 
 <style>
-  .about-main {
+  .about-top, .about-middle, .about-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 200px;
     position: relative;
   }
 
-  .about-image {
-    position: relative;
-    z-index: 4;
+  .about-section .img-container {
+    padding: 0 20px;
+    z-index: 2;
   }
 
-  .flt-circle {
-    position: absolute;
-    height: 336px;
-    opacity: .2;
-    top: -112px;
-    right: 177px;
-    z-index: 0;
+  .img-container .left {
+    padding-left: 0px;
+  }
+
+  .img-container .right {
+    padding-right: 0px;
+  }
+
+  .about-section .img-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, .1);
   }
 
   .about-main {
     z-index: 10;
   }
+
+  .about-section h4 span {
+    text-transform: lowercase;
+  }
+
+  .highlight-section {
+    background: #ededed;
+    padding: 20px 3050px;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    margin: 30px -3000px;
+  }
+
+  .purple-bk {
+    background: #513687;
+  }
+
+  .purple-bk .highlighted-quote {
+    color: white !important;
+  }
+
+  .highlighted-quote {
+    text-transform: lowercase;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+  }
+
+  .highlighted-quote.purple-txt {
+    color: #513687 !important;
+  }
+
+  .about-body {
+    margin: 0px;
+  }
+
+  .major-quote-container {
+    padding: 50px 3020px;
+    margin: 0px -3000px;
+    background: #513687;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 200px;
+  }
+
+  .major-quote {
+    text-align: center;
+    color: white;
+    font-size: 21px;
+    padding: 0 30px;
+  }
+
+  .major-quote-container img {
+    height: 110px;
+  }
+
+  .about-bottom {
+    height: 650px;
+  }
+
+  .about-bottom-left img {
+    position: absolute;
+    box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, .1);
+
+  }
+
+  .flt-circle {
+    box-shadow: none !important;
+    height: 350px;
+    top: 200px;
+    left: 20px;
+  }
+
+  .team-1 {
+    height: 350px;
+  }
+
+  .team-2 {
+    height: 380px;
+    top: 60px;
+    left: 325px;
+  }
+
+  .team-3 {
+    height: 400px;
+    top: 310px;
+    left: 100px;
+  }
+
+  .about-bottom-right {
+    align-self: end;
+  }
+
+  @media screen and (max-width: 875px) {
+    .about-top, .about-middle, .about-bottom {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .about-body {
+      margin-bottom: 50px;
+    }
+
+    .about-middle-right {
+      grid-row-start: 1;
+    } 
+
+    .about-middle-left {
+      grid-row-start: 2;
+    } 
+
+    .major-quote-container {
+      flex-direction: column;
+    }
+
+    .major-quote {
+      padding: 10px 10px 20px 10px;
+      font-size: 19px;
+    }
+
+    .team-1 {
+      height: 250px;
+    }
+
+    .team-2 {
+      height: 270px;
+      top: 160px;
+      left: 115px;
+    }
+
+    .team-3 {
+      height: 290px;
+      top: 335px;
+      left: 0px;
+    }
+
+    .about-bottom {
+      height: 850px;
+    }
+
+
+  }
+
 </style>

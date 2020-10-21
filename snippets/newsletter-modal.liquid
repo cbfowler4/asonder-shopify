@@ -18,8 +18,15 @@
             <hr class="hr--small">
           </div>
         
-        <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="contact-form"><input type="hidden" name="form_type" value="customer"><input type="hidden" name="utf8" value="✓">
-            <label for="Email" class="newsletter__label hidden-label">Sign up to our mailing list</label>
+        {% form 'customer' %}
+          {{ form.errors | default_errors }}
+          {% if form.posted_successfully? %}
+            <div class="newsletter--form">
+              <div class="note form-success">{{ 'general.newsletter_form.newsletter_confirmation' | t }}</div>
+            </div>
+          {% else %}
+
+            <label for="Email" class="newsletter__label hidden-label">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
             <input type="hidden" name="contact[tags]" value="newsletter">
             <div class="newsletter--form">
               <div class="input-group">
@@ -31,23 +38,28 @@
                 <input type="text" value="{% if customer %}{{ customer.first_name }}{% endif %}" placeholder="First name" name="contact[first_name]" id="First Name" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
               </div>
             </div>
-            <span class="popup-input-group-btn">
-              <button id="Subscribe" type="submit" class="btn newsletter__submit" aria-label="Subscribe" onclick="setCookie(true)">
-                <span class="newsletter__submit-text--large">Subscribe</span>
+            <span class="input-group-btn">
+              <button id="Subscribe" type="submit"
+                class="btn newsletter__submit"
+                aria-label="{{ 'general.newsletter_form.submit' | t }}"
+                onclick="setCookie(true)"
+              >
+                <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
               </button>
             </span>
-          
-        </form>
+          {% endif %}
+        {% endform %}
         <div class="close-link">
           <span onclick="setCookie()">No Thanks 💩</span>
         </div>
+
       </div>
     </div>
   </div>
 <div>
 
 <script>
-  const POP_UP_TIME = 30*1000; // milliseconds
+  const POP_UP_TIME = 15*1000; // milliseconds
 
   function setCookie(didSignup) {
     const days = didSignup ? 365 : 31; 
