@@ -19,7 +19,7 @@
         {% assign num_footer_columns = num_footer_columns | plus: 1 %}
         {% assign extra_footer_linklist_column = false %}
         {% assign footer_linklist_count = linklists[section.settings.footer_link_list].links.size %}
-        {% if footer_linklist_count > 5 %}
+        {% if footer_linklist_count > 4 %}
           {% assign extra_footer_linklist_column = true %}
           {% comment %}
             We split the links so we'll need another column

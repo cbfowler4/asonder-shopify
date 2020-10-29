@@ -135,6 +135,9 @@
           {%- endif -%}
 
           <img src="{{ 'tl.png' | asset_url }}" />
+
+          <img class='slideshow-bck-img' src="{{ 'geo-hex.png' | asset_url }}" >
+
           <div class="hero__text-wrap{% if block.settings.image_overlay %} slideshow__overlay{% endif %}">
             <div class="hero__text-align wrapper">
               <div class="hero__text-content" data-hero-text-content>
@@ -211,21 +214,23 @@
 
 
 <style>
-.mobile_image {
-  display: none !important;
-}
-
-
-
-@media (max-width: 750px) {
-  .desktop_image {
+  .mobile_image {
     display: none !important;
   }
 
-  .mobile_image {
-    display: block !important;
+
+  .slideshow-bck-img {
+    position: absolute;
+    opacity: .3;
+    top: 0;
+    left: 0; 
+    right: 0;
+    bottom: 0; 
+    margin: auto;
+    height: 350px;
   }
-}
+
+
 </style>
 
 <script>

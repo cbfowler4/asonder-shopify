@@ -1,0 +1,96 @@
+<div id="advanced-image">
+  <div class="header" style="background: {{ section.settings.banner-color }};">
+    <h1 style="color: {{ section.settings.font-color }};">
+      {{ section.settings.heading }}
+    </h1>
+  </div>
+
+
+  {% if section.settings.image %}
+    {% capture img_id_class %}AdvancedImg-{{ image.id }}{% endcapture %}
+    {% capture img_wrapper_id %}AdvancedImgWrapper-{{ image.id }}{% endcapture %}
+    {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+    {% include 'image-style' with image: image, small_style: false, width: 700, height: 800, wrapper_id: img_wrapper_id, img_id_class: img_id_class %}
+
+    <div id="{{ img_wrapper_id }}" class="" data-image-id="{{ image.id }}">
+      <div style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;">
+        <img class="lazyload lazypreload {{ img_id_class }}"
+          src="{{ image | img_url: '300x300' }}"
+          data-src="{{ img_url }}"
+          data-widths="[180, 370, 540, 740, 900, 1080, 1296, 1512, 1728, 2048]"
+          data-aspectratio="{{ image.aspect_ratio }}"
+          data-sizes="auto"
+          alt="{{ image.alt | escape }}">
+      </div>
+    </div>
+  {% endif %}
+
+  </div class="main-text">
+    <p> {{ section.settings.text }} </p>
+  </div>
+</div>
+
+<style>
+  #advanced-image .header {
+    padding: 30px;
+    margin: 40px 0;
+  }
+
+  #advanced-image .header h1 {
+    margin: none !important;
+  }
+
+  #advanced-image .main-text {
+    padding: 0 30px;
+  }
+
+
+</style>
+
+
+{% schema %}
+  {
+    "name": "Advanced Image",
+    "settings": [
+      {
+        "id": "heading",
+        "type": "text",
+        "label": "Heading",
+        "default": "Title"
+      },
+      {
+        "id": "font-color",
+        "type": "color",
+        "label": "Heading Color",
+        "default": "#000000"
+      },
+      {
+        "id": "banner-color",
+        "type": "color",
+        "label": "Banner Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "id": "text",
+        "type": "richtext",
+        "label": "Add custom text below",
+        "default": "<p>Add your text here</p>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Advanced Image With Header",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% javascript %}
+{% endjavascript %}
