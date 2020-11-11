@@ -34,7 +34,7 @@
 
 
     <div class="hp-section top-section">
-      <div class='top-left'>
+      <div class='top-left slide-in left'>
         {{ top_image_layout }} 
       </div>
       <div class='top-right'>
@@ -47,20 +47,31 @@
 
 
     <div class='hp-section middle-section'>
-      <div class='middle-left'>
+      <div class='middle-left slide-in left'>
         <h2 class='hp-section-heading'>{{ section.settings.middle_heading }}</h2>
           <div class='hp-section-body'>
             {{ section.settings.middle_text }}
           </div>
       </div>
 
-      <div class='middle-right'>
-        <div>
+      <div class='middle-right slide-in'>
+        <img class='accent-img' src="{{ 'geo-sun.svg' | asset_url }}"></img>
+        <div class='accent-text'>
           <h4>Set</h4>
+          <h6>/set/</h6>
+          <hr class="hr--small yellow">
+          <p>
+            the intention, emotional and physical state that you bring to an experience
+          </p>
         </div>
 
-        <div>
+        <div class='accent-text'>
           <h4>Setting</h4>
+          <h6>/'sediNG/</h6>
+          <hr class="hr--small yellow">
+          <p>
+            the environment and tools that you bring to an experience
+          </p>
         </div>
       </div>
     </div>
@@ -78,7 +89,7 @@
           </a>
         {% endif %}
       </div>
-      <div class='bottom-right'>
+      <div class='bottom-right slide-in'>
         {{ bottom_image_layout }}
       </div>
     </div>
@@ -88,17 +99,17 @@
 
 
 <style>
-
 .hp-section {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: 10px;
   padding-bottom: 70px;
   padding-top: 30px;
+  position: relative;
 }
 
 .hp-section-heading {
-  font-size: 2.5em;
+  font-size: 3.052em;
   padding-top: 20px;
 }
 
@@ -126,14 +137,50 @@
   grid-column: 7 / 13;
 }
 
-.top-right, .middle-right {
+.top-right {
   grid-column: 8 / 13;
+}
+
+.middle-right {
+  grid-column: 8 / 12;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  position: relative;
+}
+
+.accent-text h4, .accent-text h6, .accent-text p {
+  color: #D4B86A !important;
+  text-transform: none !important;
+  text-align: center;
+}
+
+.accent-text h4 {
+  font-size: 1.563em;
+}
+
+.accent-text h6, .accent-text p {
+  font-size: 1.25em;
+}
+
+.accent-text h4 {
+  font-weight: 500;
+}
+
+.accent-text {
+  margin-bottom: 50px;
+}
+
+.hr--small.yellow {
+  border-top: 1px solid #D4B86A;
 }
 
 .middle-section {
   background: #563187;
-  padding: 200px 3000px;
-  margin: -200px -3000px;
+  padding: 190px 3000px;
+  margin: -190px -3000px;
 }
 
 .middle-left, .middle-left .hp-section-heading {
@@ -142,10 +189,11 @@
 
 .top-section {
   margin-bottom: 70px;
+  z-index: 5;
 }
 
 .bottom-section {
-  margin-top: 200px;
+  margin-top: 130px;
 }
 
 .bottom-left {
@@ -155,12 +203,79 @@
 }
 
 
+.accent-img {
+  position: absolute;
+  opacity: .2;
+  animation: rotating 20s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 750px) {
- 
+  .hp-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .top-left, .bottom-right {
+    width: 100%;
+  }
+
+  .top-right {
+    margin-bottom: 100px;
+  }
+
+  .middle-section {
+    padding: 150px 3000px;
+    margin: -150px -3000px;
+  }
+
+  .middle-left {
+    margin-bottom: 30px;
+  }
+
+  .bottom-left {
+    margin: 30px 0;
+  }
 }
 
 </style>
 
+
+<script>
+
+const setVisible = (target) => { target.classList.add('is-visible'); }
+    const removeVisible = (target) => { target.classList.remove('is-visible'); }
+
+    const intersectionCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setVisible(entry.target);
+        else removeVisible(entry.target);
+      })
+    }
+
+    const observer = new IntersectionObserver(
+      intersectionCallback,
+        {
+          rootMargin: '0px',
+          threshold: 0,
+        }
+      );
+
+    document.querySelectorAll('.grid-product__wrapper, .slide-in').forEach((target) => {
+      target.classList.add('fade-in-section');
+      observer.observe(target);
+    });
+</script>
 
 {% schema %}
 {
@@ -194,6 +309,11 @@
         "type": "richtext",
         "label": "Middle Body Text",
         "default": "<p>Add your text here</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "middle_image",
+        "label": "Middle Image"
       },
       {
         "id": "bottom_heading",
