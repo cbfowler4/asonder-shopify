@@ -63,10 +63,10 @@
 
   {{ 'jquery-2.2.3.min.js' | asset_url | script_tag }}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
-
   <script src="{{ 'modernizr.min.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'helpers.js' | asset_url }}" defer="defer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" defer="defer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="{{ 'helpers.js' | asset_url }}"></script>
 
   {% comment %}
     If you store has customer accounts disabled, you can remove the following JS file

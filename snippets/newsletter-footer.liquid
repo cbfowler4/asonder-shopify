@@ -12,6 +12,7 @@
         this journey too!
       <hr class="hr--small white">
     </div>
+
     {% form 'customer' %}
       {{ form.errors | default_errors }}
       {% if form.posted_successfully? %}
@@ -41,6 +42,7 @@
         </span>
       {% endif %}
     {% endform %}
+
     <br/>
     <hr class="hr--small white hr--long">
     <br/>

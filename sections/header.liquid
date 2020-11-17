@@ -25,6 +25,12 @@
     .header-wrapper.header-wrapper--transparent .site-nav__link:hover .burger-icon {
       background: {{ header_color_transparent }};
     }
+
+    #header {
+      border-bottom: none;
+      background-color: transparent;
+      box-shadow: none;
+    }
   {%- endif -%}
 
   .header-wrapper .site-nav__link,
@@ -71,7 +77,12 @@
     }
   }
 {%- endstyle -%}
-<div data-section-id="{{ section.id }}" data-section-type="header-section" data-template="{{ request.page_type }}">
+<div
+  id="header"
+  data-section-id="{{ section.id }}"
+  data-section-type="header-section"
+  data-template="{{ request.page_type }}"
+>
   <div id="NavDrawer" class="drawer drawer--left">
     {% include 'drawer-menu' %}
   </div>
@@ -145,7 +156,6 @@
 
                 <a href="{{ routes.root_url }}" itemprop="url" class="site-header__logo-link">
                   {% if section.settings.logo %}
-                    <img class="site-header__logo-image" src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo">
 
                     {% if request.page_type == 'index' and section.settings.transparent_header_enable %}
                       {% if section.settings.transparent_logo == blank %}
@@ -155,6 +165,8 @@
                       {% endif %}
 
                       <img class="site-header__logo-image site-header__logo-image--transparent" src="{{ transparent_logo | img_url: image_size }}" srcset="{{ transparent_logo | img_url: image_size }} 1x, {{ transparent_logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo">
+                    {% else %}
+                      <img class="site-header__logo-image" src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo">  
                     {% endif %}
                   {% else %}
                     {{ shop.name }}
@@ -330,6 +342,26 @@
     </div>
   </div>
 </div>
+
+
+<style>
+  #header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 800;
+    border-bottom: 1px solid rgba(34, 34, 34, .2);
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+  }
+
+  .site-header {
+    padding: 15px 0;
+  }
+
+</style>
+
 
 
 
