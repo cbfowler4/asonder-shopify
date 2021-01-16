@@ -7,13 +7,13 @@
         
           <div class="text-center">
             <h2 class="h1 section-header__title">Will you join us?</h2>
-            <h2 class="h1 section-header__title">(no spam, no B.S.)</h2>
+            <h2 class="h1 section-header__title">(no spam, just love)</h2>
           </div>
         
         
           <div class="rte text-center">
             <p>
-            Our tribe of subscribers (200+) receives exclusive updates on product design, entrepreneurial growth, & cannabis culture; join us along this journey!
+            Our tight community (250+ readers) receives ritual tips, mindful prompts, and sweet discounts.
             </p>
             <hr class="hr--small">
           </div>
@@ -30,12 +30,12 @@
             <input type="hidden" name="contact[tags]" value="newsletter">
             <div class="newsletter--form">
               <div class="input-group">
-                <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_placeholder' | t }}" name="contact[email]" id="Email" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
+                <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="My email is..." name="contact[email]" id="Email" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
               </div>
             </div>
             <div class="newsletter--form">
               <div class="input-group">
-                <input type="text" value="{% if customer %}{{ customer.first_name }}{% endif %}" placeholder="First name" name="contact[first_name]" id="First Name" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
+                <input type="text" value="{% if customer %}{{ customer.first_name }}{% endif %}" placeholder="My first name is..." name="contact[first_name]" id="First Name" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
               </div>
             </div>
             <span class="input-group-btn">
@@ -44,13 +44,13 @@
                 aria-label="{{ 'general.newsletter_form.submit' | t }}"
                 onclick="setCookie(true)"
               >
-                <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
+                <span class="newsletter__submit-text--large">Subscribe</span>
               </button>
             </span>
           {% endif %}
         {% endform %}
         <div class="close-link">
-          <span onclick="setCookie()">No Thanks 💩</span>
+          <span onclick="setCookie()">No Thanks</span>
         </div>
 
       </div>
@@ -121,6 +121,12 @@
 #newsletter-modal-container .newsletter {
   padding: 25px 0 !important;
 }
+
+#newsletter-modal-container input {
+  border: 1px solid lightgray;
+  border-color: lightgray;
+}
+
 
 .newsletter-modal {
   position: absolute;

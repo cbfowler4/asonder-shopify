@@ -201,3 +201,9 @@ html, .main-content {
 .grid-product__price-wrap {
   display: none;
 }
+
+@media screen and (min-width: 591px) {
+  .newsletter .newsletter__input {
+      font-size: 1.125em;
+  }
+}

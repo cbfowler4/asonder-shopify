@@ -1,7 +1,7 @@
 <footer class="site-footer small--text-center" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
   <div class="wrapper">
     {% include 'newsletter-footer' %}
-    <img class='flt-hand' src="{{ 'hand-eye.png' | asset_url }}" /> 
+    <img class='flt-hand' src="{{ 'hand-eye.png' | asset_url }}" />
     <div class="grid-uniform">
 
       {% comment %}
@@ -256,6 +256,7 @@
         {%- endform -%}
 
         <p class="site-footer__copyright-content">&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}<br></p>
+        {% comment %} <p class="site-footer__copyright-content"></p> {% endcomment %}
 
         {%- if section.settings.show_payment_icons -%}
           {%- unless shop.enabled_payment_types == empty -%}
